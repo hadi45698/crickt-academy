@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Cricket Academy | Shape Your Future</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy: #0f172a;
+            --gold: #d97706;
+            --light-gold: #f59e0b;
+            --white: #ffffff;
+            --gray: #f8fafc;
+            --text-main: #334155;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--gray); color: var(--text-main); line-height: 1.6; }
+
+        /* ==================== 1. PROFESSIONAL NAVBAR ==================== */
+        .header {
+            background: var(--navy);
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo i { font-size: 2.2rem; color: var(--gold); }
+        .logo h2 { color: var(--white); font-size: 1.6rem; text-transform: uppercase; letter-spacing: 1px; }
+        .logo h2 span { color: var(--gold); }
+
+        .nav-menu { display: flex; gap: 30px; align-items: center; }
+        .nav-menu a { color: #cbd5e1; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .nav-menu a:hover { color: var(--gold); }
+
+        .btn-join {
+            background: var(--gold);
+            color: var(--white) !important;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .btn-join:hover { background: var(--light-gold); transform: translateY(-2px); }
+        .menu-btn { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+        /* ==================== 2. MOBILE RESPONSIVE SIDEBAR ==================== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--navy);
+            z-index: 2000;
+            padding: 40px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .sidebar.active { right: 0; }
+        .sidebar a { color: white; text-decoration: none; font-size: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .sidebar a:hover { color: var(--gold); }
+        .close-btn { align-self: flex-end; color: white; font-size: 2rem; cursor: pointer; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+        .overlay.active { display: block; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 75vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), 
+                        url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=1470');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero-content h1 { font-size: 3.8rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-content h1 span { color: var(--gold); }
+        .hero-content p { font-size: 1.2rem; max-width: 750px; margin: 0 auto 35px; color: #e2e8f0; }
+
+        /* STATS DISPLAY BAR */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 40px 5%;
+            background: var(--white);
+            text-align: center;
+            width: 85%;
+            margin: -60px auto 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+        }
+        .stat-item h3 { font-size: 2.6rem; color: var(--navy); font-weight: 800; }
+        .stat-item p { font-weight: 600; color: var(--gold); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+
+        /* SECTIONS STYLING */
+        .section { padding: 90px 8%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.4rem; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; }
+        .section-title .bar { width: 80px; height: 5px; background: var(--gold); margin: 0 auto; border-radius: 5px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: var(--transition); border: 1px solid #f1f5f9; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(217, 119, 6, 0.12); }
+        .card img { width: 100%; height: 240px; object-fit: cover; }
+        .card-content { padding: 25px; }
+        .card-content h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .card-content h3 i { color: var(--gold); }
+        .card-content p { color: var(--text-main); font-size: 0.95rem; }
+
+        /* CONTACT & ADMISSION FORM */
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; background: var(--white); padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+        .contact-info h3 { font-size: 1.8rem; color: var(--navy); margin-bottom: 15px; }
+        .contact-info p { margin-bottom: 18px; font-size: 1rem; }
+        .contact-info p i { color: var(--gold); margin-right: 12px; width: 20px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 16px; border: 1px solid #e2e8f0; border-radius: 10px; outline: none; background: var(--gray); font-size: 1rem; transition: 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); background: white; }
+        
+        .submit-btn { background: var(--navy); color: white; border: none; padding: 16px 40px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.05rem; transition: var(--transition); }
+        .submit-btn:hover { background: var(--gold); }
+
+        /* ==================== 3. PROFESSIONAL MULTI-COLUMN FOOTER ==================== */
+        footer { background: var(--navy); color: #cbd5e1; padding: 80px 8% 30px; margin-top: 60px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 50px; }
+        
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.15rem; text-transform: uppercase; position: relative; padding-bottom: 10px; font-weight: 600; }
+        .footer-col h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--gold); }
+        
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 15px; }
+        .footer-col ul li a { color: #cbd5e1; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .footer-col ul li a:hover { color: var(--gold); transform: translateX(5px); }
+        
+        .footer-col p { font-size: 0.95rem; line-height: 1.7; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #94a3b8; }
+
+        /* RESPONSIVE DESIGN (FOR MOBILE & TABLETS) */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.6rem; }
+            .contact-container { grid-template-columns: 1fr; padding: 30px; }
+            .nav-menu { display: none; }
+            .menu-btn { display: block; }
+            .stats { width: 90%; margin-top: -40px; }
+            .section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="sidebar" id="sidebar">
+        <i class="fa-solid fa-xmark close-btn" id="closeBtn"></i>
+        <a href="#home" class="mob-link">Home</a>
+        <a href="#about" class="mob-link">Why Elite</a>
+        <a href="#programs" class="mob-link">Coaching Programs</a>
+        <a href="#contact" class="mob-link">Admissions</a>
+    </div>
+
+    <header class="header">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-baseball-bat-ball"></i>
+            <h2>Elite <span>Cricket</span></h2>
+        </a>
+        <nav class="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#about">Why Elite</a>
+            <a href="#programs">Programs</a>
+            <a href="#contact" class="btn-join">Join Academy</a>
+        </nav>
+        <i class="fa-solid fa-bars-staggered menu-btn" id="openBtn"></i>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Elite <span>Cricket</span> Academy</h1>
+            <p>Pakistan's premium sports ecosystem offering state-of-the-art net practices, professional bowling machines, and certified tactical coaches.</p>
+            <a href="#contact" class="btn-join" style="padding: 15px 35px; font-size: 1.1rem; border-radius: 8px;">Book A Trial Session</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item"><h3>12+</h3><p>Years of Excellence</p></div>
+        <div class="stat-item"><h3>600+</h3><p>Trained Players</p></div>
+        <div class="stat-item"><h3>20+</h3><p>Professional Coaches</p></div>
+        <div class="stat-item"><h3>8+</h3><p>First-Class Players</p></div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>Why Train With Us?</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3><i class="fa-solid fa-id-card-clip"></i> Certified Mentorship</h3>
+                    <p>Get coached under high-profile professionals who target individual batting stances and bowling action refinements.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3><i class="fa-solid fa-video"></i> Video HD Analysis</h3>
+                    <p>We use modern video setups to record and micro-analyze your gameplay style, correcting errors using slow-motion feedback loops.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3><i class="fa-solid fa-trophy"></i> Match Experience</h3>
+                    <p>Participate in regular weekend club matches, inter-academy tournaments, and official trials to build strong match nerves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="programs" style="background: #fff;">
+        <div class="section-title">
+            <h2>Our Academy Programs</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1593787424264-e659c71f640e?q=80&w=600" alt="Junior Nets">
+                <div class="card-content">
+                    <h3>Junior Grassroots (U-13)</h3>
+                    <p>Perfect for beginners. We build fundamental physical grip coordination, basic bat speed swing, and solid catching techniques.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600" alt="Advanced Academy">
+                <div class="card-content">
+                    <h3>High Performance Camp</h3>
+                    <p>For U-16 & U-19 players. Includes rigorous turf net practices, handling bowling machines, and power-hitting modules.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1540747737956-378724044602?q=80&w=600" alt="Specialist Drills">
+                <div class="card-content">
+                    <h3>Specialist Clinics</h3>
+                    <p>Exclusive customized training dedicated only to Fast Bowling paths, Spin Wizardry variations, or specialized Wicketkeeping.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Admission Registration</h2>
+            <div class="bar"></div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p style="margin-bottom: 25px;">Admissions are active for the new season batches. Fill details to lock your spot.</p>
+                <p><i class="fa-solid fa-location-dot"></i> Elite Cricket Ground, Karachi, Pakistan</p>
+                <p><i class="fa-solid fa-phone"></i> +92 336 3286688</p>
+                <p><i class="fa-solid fa-envelope"></i> info.elitecricket@gmail.com</p>
+            </div>
+            <form id="regForm">
+                <div class="form-group"><input type="text" id="pName" placeholder="Player's Full Name" required></div>
+                <div class="form-group"><input type="text" id="pAge" placeholder="Age Category (e.g., U-15, U-19)" required></div>
+                <div class="form-group"><textarea id="pMsg" rows="4" placeholder="Your Cricketing Role (e.g., Right-Arm Fast Bowler, Batsman)" required></textarea></div>
+                <button type="submit" class="submit-btn">Register on WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-baseball-bat-ball"></i>
+                    <h2>Elite <span>Cricket</span></h2>
+                </a>
+                <p>Nurturing athletic talents, implementing iron discipline, and creating professional cricket champions for tomorrow.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Why Choose Us</a></li>
+                    <li><a href="#programs">Our Programs</a></li>
+                    <li><a href="#contact">Admissions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Academy Specialties</h4>
+                <ul>
+                    <li><a href="#programs">Batting Drills</a></li>
+                    <li><a href="#programs">Pace Bowling Tracks</a></li>
+                    <li><a href="#programs">Spin Wizardry Mods</a></li>
+                    <li><a href="#programs">Physical Fitness</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Working Hours</h4>
+                <p style="margin-bottom: 10px;"><i class="fa-solid fa-clock" style="color:var(--gold);"></i> Tue - Sun: 3:00 PM - 7:00 PM</p>
+                <p><i class="fa-solid fa-calendar-day" style="color:var(--gold);"></i> Monday: Closed / Rest Day</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Elite Cricket Academy. All Rights Reserved. Designed for Future Champions.</p>
+        </div>
+    </footer>
+
+    <script>
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const mobLinks = document.querySelectorAll('.mob-link');
+
+        // Sidebar Menu Open Control
+        openBtn.addEventListener('click', () => { sidebar.classList.add('active'); overlay.classList.add('active'); });
+        
+        // Sidebar Menu Close Control
+        function closeDrawer() { sidebar.classList.remove('active'); overlay.classList.remove('active'); }
+        [closeBtn, overlay].forEach(element => element.addEventListener('click', closeDrawer));
+        mobLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+        // Form submission with dynamic WhatsApp messaging redirection
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('pName').value;
+            const age = document.getElementById('pAge').value;
+            const msg = document.getElementById('pMsg').value;
+            const academyWhatsApp = "+923363286688";
+            
+            const messageTemplate = encodeURIComponent(
+                `*CRICKET ACADEMY ADMISSION INQUIRY*\n\n` +
+                `*Player Name:* ${name}\n` +
+                `*Age Group:* ${age}\n` +
+                `*Player Role:* ${msg}`
+            );
+            window.open(`https://wa.me/${academyWhatsApp}?text=${messageTemplate}`, '_blank');
+        });
+    </script>
+</body>
+</html>
