@@ -28,7 +28,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--gray); color: var(--text-main); line-height: 1.6; }
 
-        /* ==================== 1. PROFESSIONAL NAVBAR ==================== */
+        /* ==================== NAVBAR ==================== */
         .header {
             background: var(--navy);
             padding: 18px 8%;
@@ -63,7 +63,7 @@
         .btn-join:hover { background: var(--light-gold); transform: translateY(-2px); }
         .menu-btn { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
-        /* ==================== 2. MOBILE RESPONSIVE SIDEBAR ==================== */
+        /* ==================== MOBILE RESPONSIVE SIDEBAR ==================== */
         .sidebar {
             position: fixed;
             top: 0;
@@ -89,7 +89,7 @@
         .hero {
             height: 75vh;
             background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)), 
-                        url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=1470');
+                        url('https://placehold.co/1470x800/0f172a/ffffff?text=Elite+Cricket+Academy');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -128,13 +128,16 @@
         .section-title .bar { width: 80px; height: 5px; background: var(--gold); margin: 0 auto; border-radius: 5px; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: var(--transition); border: 1px solid #f1f5f9; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: var(--transition); border: 1px solid #f1f5f9; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(217, 119, 6, 0.12); }
-        .card img { width: 100%; height: 240px; object-fit: cover; }
-        .card-content { padding: 25px; }
-        .card-content h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .card-content h3 i { color: var(--gold); }
-        .card-content p { color: var(--text-main); font-size: 0.95rem; }
+        
+        .image-container { width: 100%; height: 240px; background: #e2e8f0; overflow: hidden; position: relative; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content .tag { font-size: 0.8rem; color: var(--gold); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .card-content h3 { color: var(--navy); margin-bottom: 12px; font-size: 1.4rem; font-weight: 700; }
+        .card-content p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
 
         /* CONTACT & ADMISSION FORM */
         .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; background: var(--white); padding: 50px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
@@ -149,7 +152,7 @@
         .submit-btn { background: var(--navy); color: white; border: none; padding: 16px 40px; border-radius: 10px; font-weight: 600; cursor: pointer; width: 100%; font-size: 1.05rem; transition: var(--transition); }
         .submit-btn:hover { background: var(--gold); }
 
-        /* ==================== 3. PROFESSIONAL MULTI-COLUMN FOOTER ==================== */
+        /* FOOTER */
         footer { background: var(--navy); color: #cbd5e1; padding: 80px 8% 30px; margin-top: 60px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 50px; }
         
@@ -164,7 +167,6 @@
         .footer-col p { font-size: 0.95rem; line-height: 1.7; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #94a3b8; }
 
-        /* RESPONSIVE DESIGN (FOR MOBILE & TABLETS) */
         @media (max-width: 992px) {
             .hero-content h1 { font-size: 2.6rem; }
             .contact-container { grid-template-columns: 1fr; padding: 30px; }
@@ -250,22 +252,31 @@
         </div>
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1593787424264-e659c71f640e?q=80&w=600" alt="Junior Nets">
+                <div class="image-container">
+                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Junior+Grassroots" alt="Junior Grassroots">
+                </div>
                 <div class="card-content">
+                    <span class="tag">Junior Nets</span>
                     <h3>Junior Grassroots (U-13)</h3>
                     <p>Perfect for beginners. We build fundamental physical grip coordination, basic bat speed swing, and solid catching techniques.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600" alt="Advanced Academy">
+                <div class="image-container">
+                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=High+Performance+Camp" alt="High Performance Camp">
+                </div>
                 <div class="card-content">
+                    <span class="tag">Turf Practice</span>
                     <h3>High Performance Camp</h3>
                     <p>For U-16 & U-19 players. Includes rigorous turf net practices, handling bowling machines, and power-hitting modules.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1540747737956-378724044602?q=80&w=600" alt="Specialist Drills">
+                <div class="image-container">
+                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Specialist+Clinics" alt="Specialist Clinics">
+                </div>
                 <div class="card-content">
+                    <span class="tag">Specialist Drills</span>
                     <h3>Specialist Clinics</h3>
                     <p>Exclusive customized training dedicated only to Fast Bowling paths, Spin Wizardry variations, or specialized Wicketkeeping.</p>
                 </div>
@@ -284,7 +295,7 @@
                 <p style="margin-bottom: 25px;">Admissions are active for the new season batches. Fill details to lock your spot.</p>
                 <p><i class="fa-solid fa-location-dot"></i> Elite Cricket Ground, Karachi, Pakistan</p>
                 <p><i class="fa-solid fa-phone"></i> +92 336 3286688</p>
-                <p><i class="fa-solid fa-envelope"></i> info.elitecricket@gmail.com</p>
+                <p><i class="fa-solid fa-envelope"></i> <info class=""></info>hadialtaf05@gmail.com</p>
             </div>
             <form id="regForm">
                 <div class="form-group"><input type="text" id="pName" placeholder="Player's Full Name" required></div>
@@ -340,15 +351,19 @@
         const overlay = document.getElementById('overlay');
         const mobLinks = document.querySelectorAll('.mob-link');
 
-        // Sidebar Menu Open Control
-        openBtn.addEventListener('click', () => { sidebar.classList.add('active'); overlay.classList.add('active'); });
+        openBtn.addEventListener('click', () => { 
+            sidebar.classList.add('active'); 
+            overlay.classList.add('active'); 
+        });
         
-        // Sidebar Menu Close Control
-        function closeDrawer() { sidebar.classList.remove('active'); overlay.classList.remove('active'); }
+        function closeDrawer() { 
+            sidebar.classList.remove('active'); 
+            overlay.classList.remove('active'); 
+        }
+        
         [closeBtn, overlay].forEach(element => element.addEventListener('click', closeDrawer));
         mobLinks.forEach(link => link.addEventListener('click', closeDrawer));
 
-        // Form submission with dynamic WhatsApp messaging redirection
         document.getElementById('regForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('pName').value;
